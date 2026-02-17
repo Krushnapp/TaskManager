@@ -22,6 +22,7 @@ public class TaskController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Task create(@Valid @RequestBody TaskRequest req) {
         Task task = new Task();
         task.setTitle(req.getTitle());

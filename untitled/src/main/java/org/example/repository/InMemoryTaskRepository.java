@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Repository
 public class InMemoryTaskRepository implements TaskRepository {
@@ -30,16 +31,18 @@ public class InMemoryTaskRepository implements TaskRepository {
 
     @Override
     public List<Task> findAll() {
-        return new ArrayList<>(store.values());
+        return store.values().stream()
+                .sorted(Comparator.comparing(Task::getDueDate))
+                .collect(Collectors.toList());
     }
 
 
 
     @Override
     public List<Task> findByStatus(TaskStatus status) {
-        return store.values()
-                .stream()
+        return store.values().stream()
                 .filter(t -> t.getStatus() == status)
-                .toList();
+                .sorted(Comparator.comparing(Task::getDueDate))
+                .collect(Collectors.toList());
     }
 }

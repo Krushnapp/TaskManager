@@ -44,6 +44,8 @@ public class TaskService {
         task.setTitle(updatedTask.getTitle());
         task.setStatus(updatedTask.getStatus());
         task.setDueDate(updatedTask.getDueDate());
+        task.setDescription(updatedTask.getDescription()); // ADD THIS
+
 
         return repository.save(task);
     }
