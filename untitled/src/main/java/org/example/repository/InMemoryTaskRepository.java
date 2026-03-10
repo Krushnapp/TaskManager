@@ -40,9 +40,9 @@ public class InMemoryTaskRepository implements TaskRepository {
 
     @Override
     public List<Task> findByStatus(TaskStatus status) {
-        return store.values().stream()
+        return store.values()
+                .stream()
                 .filter(t -> t.getStatus() == status)
-                .sorted(Comparator.comparing(Task::getDueDate))
-                .collect(Collectors.toList());
+                .toList();
     }
 }

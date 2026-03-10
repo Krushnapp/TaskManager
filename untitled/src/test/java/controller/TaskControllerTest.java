@@ -1,5 +1,6 @@
 package controller;
 
+import org.example.TaskManagerApplication;
 import org.example.controller.TaskController;
 import org.example.model.Task;
 import org.example.model.TaskStatus;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.example.exception.TaskNotFoundException;
 
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -20,7 +22,10 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;@WebMvcTest(TaskController.class)
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest({TaskController.class, TaskController.class})
+@ContextConfiguration(classes = TaskManagerApplication.class)
 class TaskControllerTest {
 
     @Autowired

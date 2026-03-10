@@ -17,10 +17,23 @@ public class Task {
     private String description;
     private TaskStatus status;
     private LocalDate dueDate;
+    private boolean isDeleted;
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
 
     public Task() {
         this.id = UUID.randomUUID().toString();
         this.status = TaskStatus.PENDING;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getId() { return id; }

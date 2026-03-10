@@ -34,6 +34,7 @@ class TaskServiceTest {
     @Test
     void shouldCreateTaskWithFutureDate() {
         Task task = new Task();
+        task.setId("1");
         task.setTitle("Test Task");
         task.setDescription("Desc");
         task.setStatus(TaskStatus.PENDING);
@@ -79,11 +80,13 @@ class TaskServiceTest {
     @Test
     void shouldDeleteTask() {
         Task task = new Task();
+        task.setId("1");
+        task.setDeleted(false);
         when(taskRepository.findById("1")).thenReturn(Optional.of(task));
 
         taskService.deleteTask("1");
-
-        verify(taskRepository).deleteById(task.getId());
+assertTrue(task.isDeleted());
+    //    verify(taskRepository)(task.isDeleted());
     }
 
     @Test
